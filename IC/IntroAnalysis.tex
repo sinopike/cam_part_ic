@@ -1,0 +1,201 @@
+\input{header}
+
+\title{Introduction to Mathematical Analysis\\{\small Lectured by Dr Chris Barnett}}
+\author{Note taken by Yuchen Pei}
+\date{}
+\begin{document}
+\maketitle
+
+
+
+\section{Distance function}
+
+Example:
+$x,y \in \mathbb{R}, |x-y|$ is a distance function
+
+
+\subsection{Convergence of sequences}
+
+sequence $x_n$ converges to x if
+$$
+\forall \epsilon>0, \exists N_\epsilon\in\mathbb{N}: n\geq N_\epsilon \implies |x-x_n|<\epsilon
+$$
+
+If $x_n\rightarrow x$, then $\forall \epsilon>0$ , we can choose $N_\epsilon \in \mathbb{N}: |x_n-x_m|<\epsilon \:\:\forall m,n\geq N_\epsilon$
+
+\subsection{Cauchy sequences}
+
+$|x+y|\leq |x|+|y|$, $|x_m-x_n|\leq|x_n-x|+|x-x_n|$.
+
+\subsection{Euclidean distance}
+
+2-dimension
+$|| \mathbf{x}-\mathbf{y} ||_2=\left(\sum_{i=1}^{n}|x_i-y_i|^2\right)^{1/2}$
+
+p-dimension
+$|| \mathbf{x}-\mathbf{y} ||_p=\left(\sum_{i=1}^{n}|x_i-y_i|^p\right)^{1/p}$
+
+All are distance functions
+
+note that for $p=\infty$ we define $||\mathbf{x}-\mathbf{y}||_\infty=\max\{  |x_i-y_i|:1\leq i\leq n  \}$
+
+\subsection{Continuous space}
+
+$$
+\mathcal{L}^2(\mathbb{R})=\{f:f:\mathbb{R}\rightarrow\mathbb{R}\text{ and }\int_{-\infty}^{\infty}|f^2|<\infty\}
+$$
+
+Therefore distance function is $||f-g||_2=(\int_{-\infty}^{\infty}|f-g|)^{1/2}$
+
+
+$$
+C[0,t]=\{ f:f_n \text{ continuous on }[0,t]\subseteq\mathbb{R}   \}
+$$
+
+we define $||f-g||_\infty=\max\{  |f(t)-g(t)|:t\in[0,T]  \}$
+
+\subsection{Brownian motion}
+
+An important subspace is:
+
+$$
+C_0[0,t]=\{ f\in C[0,t]:f(0)=0 \} \:\: "B_t(f)=f(t)"
+$$
+
+\section{Probability}
+
+see cambridge part ii course probability and measure
+
+\subsection{Probability space}
+
+Probability (probably) in probability space $(\Omega, \mathcal{F}, \prob)$. 
+
+$\Omega$ denotes all outcomes of possible situation.
+
+$\mathcal{F}$ is a collection of subsets of $\Omega$ - called events. $\mathcal{F}$ has a structure: $\Omega$ and $\emptyset$ are in $\mathcal{F}$. If $E,F\in\mathbb{E}$, then $E\cap F$, $E\cup F$ and $E\setminus F$ are in $\mathbb{E}$. If $(E_n)\subset\mathbb{E}$ and $E_1\supseteq E_2\supseteq E_3\dots $ then $\bigcap_n E_n\in\mathbb{E}$.
+
+Finally $\prob:\mathbb{E}\rightarrow[0,1]$ such that $\Prob{\Omega}=1$, $\Prob{\emptyset}=0$ and $\Prob{E\cup F}=\Prob{E}+\Prob{F}$ when $E\cap  F=0$. If $(E_n)$ is that descending sequence described earlier with $\bigcap_n E_n=\emptyset$ then $\prob\downarrow 0$. So if $(E_n)$ and $E_n \cap E_m=\emptyset \forall m,n$ then $\Prob{ \bigcup_n E_n }=\sum_i^{\infty}\Prob{E_n}$.
+
+When we look at Stochastic processes we have probability space $(\Omega, \mathcal{F}, \prob)$ and a family $(\mathcal{F}_t)$ of structures just like $\mathcal{F}$. So here $y$ is a $\sigma$-field as are $\mathcal{F}_t, t\in[0,\infty)$ and if $\zeta\leq t$ then $\mathcal{F}_\zeta \subseteq\mathcal{F}_t$ while $\bigcup_t\mathcal{F}_t\subseteq\mathcal{F}$ and $\sigma(\cup_t\mathcal{F}_t)=\mathcal{F}$
+
+\subsection{Abstract integration}
+
+Begin with a probability space $(\Omega, \mathcal{F}, \prob)$. Let $E\in\mathcal{F}$ and set
+$
+I_E(\omega)=\bigg\{
+\begin{matrix}
+1 \text{ if }\omega\in E
+\\
+0 \text{ if }\omega\notin E
+\end{matrix}
+$ .
+We call $I_E$ the indicator of $E$.
+
+The collection $\{ I_E:E\in\mathcal{F} \}$ is called the set of elementary random variable. Any function on $\Omega$ which is a linear combination of indicator functions is called a sample random variable. So typically it will have the form $\sum_{i=1}^{n}\alpha_i I_{E_i}=f$. We can always write $f=\sum_{i=1}^n\alpha_i I_{G_i}$ where $G_i=\{ f=\alpha_i \}$ and $\alpha_i$ are the distinct values assumed by $f$.
+
+For an elementary random variable $I_E$ we define $\int_\Omega I_{E} \text{d}\prob=\prob(E)$. For $f$, as above, with $f=\sum_{i=1}^n\alpha_i I_{G_i}$, $\int_\Omega f \text{d}\prob=\sum_{i=1}^n\alpha_i\prob(G_i)$. A function, $h:\Omega\rightarrow\mathbb{R}$ is called measurable is for every Borel set in $\mathbb{R}$, call it $B$, $f^{-1}(B)=\{\omega:f(\omega)\in B\}\in\mathcal{F}$.
+
+Let $f:\Omega\rightarrow [0,\infty]$ be a measure function. Then there exists a sequence of simple random variables, $0\leq \Delta_1\leq\Delta_2\leq\Delta_3\leq\dots\leq f$ with $\Delta_n(\omega)\rightarrow f(\omega)$
+
+Not a proof:
+
+$\Delta_n\uparrow f\mathbb{E}(f)=\int_\Omega f\text{d}\prob=\lim_n\int_\Omega\Delta_n\text{d}\prob$ if f is not non-negative we write $f=f^+-f^-$, $f^+=(f)_+$, $f^-=(-f)_+$. $\int_\Omega f \text{d}\prob=\int_\Omega f^+\text{d}\prob-\int_\Omega f^-\text{d}\prob$
+
+We can define $\int_E f \text{d}\prob$ by $\int_\Omega I_Ef\text{d}\prob$. Note the map $\mathcal{F}\ni E\mapsto \int_E f \text{d}\prob$ turns out to be a measure and can be a probability measure. There are zillions of these in Maths Finance.
+
+Note also that, for example, in $[0,1]$ where $\lambda[a,b]=\lambda(a,b]=\lambda(a,b)=\lambda[a,b)=b-a$ then large sets have small measure (probability) sometimes. Note that the singleton, ${x},x\in[0,1]$, in $[x,x]$ and this has $\lambda[x,x]=\lambda{x}=0$.
+
+So if we take $\mathbb{Q}$, the rationals, and enumerate them, $q_1,q_2,q_4,\dots$ Let $E_n=\{q_1,q_2,\dots,q_n\}, \lambda(E_n)=\sum_{i=1}^n\lambda\{q_i\}=0$. $\bigcup_n E_n=\mathbb{Q}$, and $\lambda(\mathbb{Q})=\sum_{i=1}^{\infty}\lambda\{ q_i \}=0$ So $\int_{[0,1]}I_{\mathbb{Q}_1}\text{d}\lambda=0$ but $I_{\mathbb{Q}}\neq 0$
+
+\section{recap}
+
+\subsection{Monotone convergence $\Theta_m$}
+
+Let $(f_n)$ be a sequence of measurable random variables with $0\leq f_1\leq f_2\dots\leq f_n\leq\dots\leq\infty$ for each $\omega\in\Omega$, and suppose $f_n(\omega)\rightarrow_{n\rightarrow 0} f(\omega) \forall \omega\in\Omega$. Then $f$ is a random variable and $\int_{\Omega}f_n\text{d}\prob\rightarrow\int_{\Omega}f\text{d}\prob$. Also, if $\sup_n\int_\Omega f_n\text{d}\prob<\infty$ then $f$ is integrable, i.e. $|\int_\Omega f \text{d}\prob|\leq\int_\Omega |f| \text{d}\prob\leq\infty$.
+
+Note that we have $\int_\Omega (\lim_n f_n)\text{d}\prob=\lim_n \int_\Omega f_n\text{d}\prob$ !
+
+\subsection{Dominated convergence $\Theta_m$}
+
+Let $(f_n)$ be a sequence of random variables such that $\lim_n f_n(\omega)=f(\omega) \forall \omega \in\Omega$ and there is a random variable $g$ such that $g\geq 0, f_n\leq g \forall n$ and $\int_\Omega g \text{d}\prob\leq\infty$. Then $f$ s a random variable and $\int_\Omega f \text{d}\prob\leq\infty$ with $\int_\Omega |f-f_n|\text{d}\prob\rightarrow 0$ as $n\rightarrow \infty$. So that $\lim_n\int_\Omega f_n \text{d}\prob=\int_\Omega f \text{d}\prob$.
+
+\section{intro 2}
+
+For $f\geq 0$, we can find simple random variables, $\Delta \: n\in\mathbb{N}$, with $0\leq\Delta_1\leq\Delta_2\leq\dots\leq\Delta_n\leq\dots\leq f$, and $\Delta_n\rightarrow f$ point-wise. We can define $\int_\Omega f \text{d}\prob=\lim_n\int_\Omega\Delta_n\text{d}\prob$.
+
+If n is not non-negative, write $f=f^+-f^-$, $f^+=(f)_+$, $f^-=(-f)_+$, define $\int_\Omega f\text{d}\prob=\int_\Omega f^+\text{d}\prob-\int_\Omega f^-\text{d}\prob$ which makes sense as long as at least one of the right hand integrals is finite.
+
+We saw above that, for example, the set $\mathbb{Q}_1$ in $[0,1]$ has zero measure Therefore $I_{\mathbb{Q}_1}$ has zero integral $\int_{[0,1]}I_{\mathbb{Q}_1}=0$ but $I_{\mathbb{Q}_1}\neq 0$. We want to define analogue of the p-norms of the random variable on $(\Omega,\mathcal{F},\prob)$. So we want to define $||f-g||_p=\left( \int_\Omega |f-g|^P\text{d}\prob \right)^{1/p}$. But up to now this is not true as a distance $f^n$. Suppose we have got $f,g$ and ${f\neq g}$ is such that $\Prob{f\neq g}=0$. Then $\Prob{f\leq \alpha}=\Prob{g\leq\alpha}\forall\alpha\in\mathbb{R}$
+
+So, $f$ and $g$ are identical random variables. So we identify probabilistically identical random variables. Define a relation $"\sim": f\sim g\iff\Prob{f=g}=1\text{or}\Prob{f\neq g}=0$. This is an equivalence relation. This breaks the set of random variables into disjoint equivalence classes. $\{ <f>:f\text{ is a random variable } \}$. We define $<f>+<g>=<f+g>$, $\lambda<f>=<\lambda f>$, $<f><g>=<fg>$, $\int_\Omega<f>\text{d}\prob=<\int_\Omega f \text{d}\prob>=\int_\Omega f \text{d}\prob$, $\int_\Omega |<f>-<g>|^P\text{d}\prob=\int_\Omega |f-g|^p\text{d}\prob$. This enables us to 'correct' the distance function $||<f>-<g>||_p$ because if this is zero then $<f>-<g>\in<0>$ and our distance function zeros everything in $<0>$.
+
+This allows us to define $L^p(\Omega,\mathcal{F},\prob)$ as the set of classes $<f>$ for which $(\int_\Omega <f>^p\text{d}\prob)^{1/p}\leq\infty, 1\leq p <\infty$
+
+\subsection{Some extensions}
+
+We can integrate $\mathbb{C}$-valued random variables early using the theory above. Amy $\mathbb{C}$-valued function on $\Omega, f$ can be written as $f=\Re(f)+i\Im(f)$ and we can define $\int_\Omega f\text{d}\prob=\int_\Omega\Re(f)\text{d}\prob+i\int_\Omega\Im(f)\text{d}\prob$.
+
+So let $X$ be a random variable, we can form $\phi(t)=\mathbb{E}(\e^{itX})$ the characteristic function of $X$.
+
+We have some nice properties $\phi(t)=\mathbb{E}(\e^{itX})=\mathbb{E}(\cos tX+i\sin tX)=?$. If $X$ has a nice distribution function (monotone increasing and right continuous) then we can write $\phi(t)=\int_\mathbb{R}\e^{itX}\text{d}F_X(x)$ where $F$ is the distribution function of X.
+
+\bigskip
+
+\textbf{Exercise}: find how to obtain the moments of X from $\phi(t)$.
+
+\textbf{Solution}:
+
+$$
+M_k=\mathbb{E}(X^k)
+$$
+
+\begin{align*}
+\phi(t)&=\mathbb{E}(\sum_{n=0}^\infty \frac{(itX)^n}{n!})
+\\
+\phi^{(m)}(t)
+&=\sum_{n=m}^\infty \mathbb{E}(\frac{(t)^{n-m}i^nX^n}{(n-m)!})
+\\
+&=\sum_{n=m}^\infty  \frac{(t)^{n-m}i^n}{(n-m)!}  M_n
+\\
+\phi^{(m)}(0)&=M_m
+\end{align*}
+
+The space $L^2(\Omega,\mathcal{F},\prob)$. This is a linear (or vector) space. The distance function  is $||f-g||_2=(\int_\Omega|f-g|^2\text{d}\prob)^{1/2}$. It is one of the $L^p$ spaces, $1\leq p\leq\infty$. For a probability space, $L^p$ are "neated".
+
+$L^2(\Omega,\mathcal{F},\prob)$ has another structure defined on it. Write $<f,g>=\int_\Omega fg \text{d}\prob$. This is an linear product. Note that $<f,f>=\int_\Omega |f^2|\text{d}\prob=||f||_2^2$, hence $||\cdot||_2$ is a norm.
+
+Recall: In $\mathbb{R}^2, \mathbf{x}=(x_1,x_2), \mathbf{y}=(y_1,y_2)$, we have the dot product $\mathbf{x}\cdot\mathbf{y}=x_1y_1+x_2y_2$. When $\mathbf{x}\cdot\mathbf{y}$ is zero we know that $\mathbf{x}$ and $\mathbf{y}$ are orthogonal.
+
+Inside of $L^2(\Omega,\mathcal{F},\prob)$ there is an analogue idea of orthogonality. $f$ is orthogonal to $g$ if $\int_\Omega fg\text{d}\prob=<f,g>=0$
+
+It is possible that $\mathcal{F}$ may contain a "sub-$\sigma$-field", $G$. The space $L^2(\Omega,G,\prob)$ onto $L^2(\Omega, \mathcal{F},\prob)$. i.e. $L^2(\Omega,G,\prob) \subseteq L^2 (\Omega, \mathcal{F},\prob)$ 
+
+Aside: Let $\mathcal{H}$ be a complete inner product - like $L^2(\Omega,\mathcal{F},\prob)$ is. Let $\mathcal{M}$ be a closed subspace of $\mathcal{H}$. Recall the picture of vectors in $\mathbb{R}^3$ above: this picture describes the relation of $\mathcal{M}$ inside of $\mathcal{H}$!
+
+imagine $\mathcal{M}$ is a plane and $f$ is a point not on $\mathcal{M}$.
+
+$P(f)$ is the closed point of $\mathcal{M}$ to $f$
+
+$f-P(f)$ is orthogonal to $\mathcal{M}$
+
+\bigskip
+
+If one consider $\mathcal{H}=L^2(\Omega,\mathcal{F},\prob),\mathcal{M}=L^2(\Omega,G,\prob)$ then for each $f\in L^2(\mathcal{F})$ there is a $P(f)\in L^2(G)$, and $||f-P(f)||_2\leq||f-g||_2\forall g\in L^2(G)$
+
+We call $P(\:)$ the conditional expectation of $L^2(\Omega,\mathcal{F},\prob)$ and $L^2(\Omega,G,\prob)$. Clearly $P(f)\in L^2(\Omega,G,\prob)$. Also if $g \in L^2(G)$, $P(g)=g$, so $P(P(f))=P(f)$ and $P^2=P$. One can show that $P$ is a linear map and $||\cdot||_2$ contractive $||P(f)||_2\leq ||f||_2$
+
+$$
+\eqh{conditional expectation }\mathbb{E}(\cdot|G)
+$$
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

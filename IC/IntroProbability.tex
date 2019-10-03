@@ -1,0 +1,799 @@
+\input{header}
+
+\title{Introduction to Probabilities\\{\small Lectured by I forgot his name}}
+\author{Note taken by Yuchen Pei}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Intuition}
+
+\subsection{Event space}
+
+$\Omega_D=\{ 1,2,3,4,5,6 \}$
+
+$\Omega_{[0,1]^2}=\{ 0\leq x\leq 1, (x,y):0\leq x \leq 1, 0\leq y \leq 1 \}$
+
+Events $A\subseteq \Omega$
+
+$\Omega_D$: $A=\{ 1,2,3 \}$
+
+$\Omega_{[0,1]^2}$: $A=\{0\leq x\leq 1/2, 1/2\leq y\leq 1\}$
+
+\subsection{Probability measure}
+
+$\mathbb{P},P$
+
+$A \subseteq \Omega \rightarrow \Prob{A}$ probability that event A occurs
+
+\begin{align*}
+0\leq & \Prob{A} \leq 1
+\\
+&\Prob{\emptyset}=0
+\\
+&\Prob{\Omega}=1
+\end{align*}
+
+If $\mathbb{P}(A)=0$ we say A does not occur almost surely
+
+If $\mathbb{P}(A)=1$ we say A does occur almost surely
+
+
+
+\subsection{Examples}
+
+D for dice
+
+\begin{align*}
+\Prob{D=3}&=1/6
+\\
+\Prob{D=2}&=1/6
+\\
+\Prob{D=2\text{ or }D=3}&=2/6
+\\
+\Prob{D\in\{2,3\}}&=2/6
+\end{align*}
+
+$A=\{D=2\}$, $B=\{D=3\}$
+
+$
+\Prob{A\cup B}=\Prob{A}+\Prob{B}
+$
+ for $A\cap B=\emptyset$
+
+Counter example as $C\cap D\neq\emptyset$:
+
+\begin{align*}
+C=\{D=2,3\}
+\\
+D=\{D=3\}
+\end{align*}
+
+for
+$
+\{A_i\}
+$
+Pairwise disjoint events
+
+$$
+\Prob{ \bigcup_{i=-1}^{N} A_i }=\sum_{i=1}^{N}\Prob{A_i}
+$$
+
+for
+$
+(A_i)_{i\in I}
+$
+, I countable, pairwise disjoint events
+
+$$
+\Prob{ \bigcup_{i=-1} A_i }=\sum_{i=1}\Prob{A_i}
+$$
+
+$I=\mathbb{N}$
+
+\subsection{More Examples}
+
+$$
+\Omega_D: \: \Prob{A}=\frac{ XX \text{E(events in A)}}{6}
+$$
+
+$$
+\Omega_{[0,1]^2}: \: \Prob{A}=\frac{\text{Area}(A)}{\text{Area(Box)}=1}
+$$
+
+$$
+\Omega_{[0,1]}: \: \Prob{A}\frac{\text{length}(A)}{1}
+$$
+
+$x=1/2$, $\Prob{x}=0$
+
+counter example for uncountable $[0,1]$
+
+\begin{align*}
+1=\Prob{\Omega_{[0,1]}}
+\\
+=\Prob{\bigcup_{x\in[0,1]}\{x\}}
+\\
+=\sum_{{x\in[0,1]}}\Prob{x}
+\\
+=\sum_{{x\in[0,1]}}0
+\\
+=0
+\end{align*}
+
+$$
+[0,1]=\{ x\in\mathbb{R}:0\leq x\leq 1 \}=A=\bigcup_{{x\in[0,1]}}\{x\}=B
+$$
+
+$$
+\begin{matrix}
+z\in A\implies z\in B
+\\
+z\in B\implies z\in A
+\end{matrix}
+\implies
+A+B
+$$
+
+\subsection{Definitions}
+
+We say $\prob$ is a probability measure on $\Omega$ if and only if
+
+\begin{align*}
+\Prob{\emptyset}&=0
+\\
+\Prob{\Omega}&=1
+\\
+\Prob{A}&\geq 0 \text{ for events }A\subseteq \Omega
+\end{align*}
+
+$A_i, i\in I$, countably many pairwise disjoint events
+
+$$
+\Prob{\bigcup_{i\in I}A_i}=\sum_{i\in I}\Prob{A_i}
+$$
+
+We call $(\Omega,\prob)$ a probability space
+
+\subsection{Lemma}
+
+$$
+B\subseteq A\implies \Prob{B}\leq\Prob{A}
+$$
+
+\subsubsection{Proof}
+
+\begin{align*}
+\Prob{A}
+&=\Prob{A\cap\Omega}
+\\
+&=\Prob{A\cap(B\cup \bar{B})}
+\\
+&=\Prob{(A\cap B)\cup (A\cap \bar{B})    }
+\\
+&=\Prob{ B\cup (A\cap\bar{B})   }
+\\
+&=\Prob{B}+\Prob{A\cap\bar{B}}
+\\
+&\geq \Prob{B}
+\end{align*}
+
+
+
+
+
+\section{Independence}
+
+$
+D_1, D_2 \rightarrow\text{two dice}
+$
+
+$$
+\Omega_{D^2}=\{ (1,1), (1,2)\dots (1,6),(2,1)\dots(2,6)\dots(6,6)   \}
+$$
+
+$$
+\Prob{A}=\frac{XX\text{E(events)}}{36}
+$$
+
+$
+\Prob{D_1=2}=1/6,\: \Prob{D_2=3}=1/6
+$
+
+$
+\Prob{D_1=2,D_2=3}=\Prob((2,3))=1/36
+$
+
+
+$A=\{D_1=2\}, B=\{D_2=3\}$
+
+$$
+\Prob{A}\cdot\Prob{B}=\Prob{A\cap B}
+$$
+
+(only for independent $A,B$)
+
+$
+\tilde{D}_1
+\tilde{D}_2
+:
+\Omega_D=\{(1,1),(2,2),(3,3)\dots(6,6)\}
+:
+\Prob{(2,2)}=\frac{1}{6}
+$
+
+$
+\Prob{(2,3)}=0
+$
+
+$
+\Prob{\tilde{D}_1=\tilde{D}_2=1}=\Prob{(1,1)}=\frac{1}{6}
+$
+
+$
+\Prob{\tilde{D}_1=1}=\frac{1}{6}
+$
+
+$
+\Prob{\tilde{D}_2=1}=\frac{1}{6}
+$
+
+$
+1/6 \neq 1/6-1/6
+$
+
+$$
+A=\{  \tilde{D}_1=1\} \text{ and } B=\{ \tilde{D}_2=1 \} \text{ are not independent.}
+$$
+
+\subsection{Definitions}
+
+We say the sets $A_1\dots A_N$ are independent if and only if for every subfamily $A_{i_1}\dots A_{i_k}$, $2<k<n$, $1\leq i_{1}<i_2\dots i_k\leq n$.
+
+$$
+\Prob{ \bigcap_{j=1}^{k} A_{i_j} }=\prod_{j=1}^{k} \Prob{A_{i_j}}
+$$
+
+For countably many events $(A_i)_{i\in I}$ we say they are independent if and only if every finite subfamily is independent.
+
+$A\perp B\iff $ A is independent of B
+
+$A\perp A \implies \Prob{A}\in\{0,1\}$
+
+$$\text{as }
+\Prob{A\cap A}=\Prob{A}\cdot\Prob{A}\implies x=x^2\implies x \in \{0,1\}
+$$
+
+
+
+
+
+
+\section{Conditional Probability}
+
+\subsection{Definitions}
+
+Given two events A and B such that $\Prob{B}>0$, then we say the conditional probability of $A$ with respect to $B$ is given by
+
+$$
+\Prob{A|B}=\frac{\Prob{A\cap B}}{\Prob{B}}
+$$
+
+$A\cap B=\emptyset\implies \Prob{A|B}=0$
+
+$\Prob{A|A}=1$
+
+$\Prob{A|\Omega}=\Prob{A}$
+
+\subsection{Baye's rule}
+
+Given a partition $(A_i,i\in\{1,2\dots N\})$ such that $\forall i \Prob{A_i}>c$ and an event $B$ such that $\Prob{B}>0$, then
+
+$$
+\Prob{A_i|B}=\frac{\Prob{A_i\cap B}}{\Prob{B}}=\frac{\Prob{A_i}\Prob{B|A_i}}{\sum_{j=-1}^N\Prob{A_j}\Prob{B|A_j}}
+$$
+
+\section{Random variables}
+
+$$
+\Omega_1=\{\text{H,T}\}
+\begin{matrix}
++1 if \text{H}
+\\
+-1 if \text{T}
+\end{matrix}
+$$
+
+$$
+\Omega_D=\{ 1,2,3,4,5,6 \}
+$$
+
+\subsection{Definitions}
+
+Given a probability space $(\Omega,\prob)$ we call a function $X \Omega\mapsto \mathbb{R}$ as random variable
+
+$$
+\Omega_1 \bigg|
+\begin{matrix}
+X(\text{H})=1
+\\
+X(\text{T})=-1
+\end{matrix}
+$$
+
+$
+\mathbbm{1}_A\Omega\rightarrow \mathbb{R}
+$
+
+$$
+\mathbbm{1}_A(\omega)=\bigg\{
+\begin{matrix}
+1 \text{ if }\omega \in A
+\\
+0 \text{ if }\omega \not\in A
+\end{matrix}
+$$
+
+\subsection{Distribution}
+
+$\{x \in A\}\subseteq \Omega$
+
+$\mu(A\subseteq\mathbb{R})=\Prob{X\in A}=\Prob{\{ \omega\in\Omega,  X(\omega)\in A \}}$
+
+\subsubsection{Discrete}
+
+Probability mass function (PMF): $P_X$
+
+$
+P_X(x)=\mu({x})=\Prob{X\in x}
+$
+
+Simple analysis shows
+
+$$
+P_X(x)=0 \text{ for all }x \in \mathbb{R} \text{ except countably many places.}
+$$
+
+example omitted
+
+\subsubsection{Continuous}
+
+Probability density function (PDF): $f_X$
+
+$$
+\Prob{X=x}=f_X(x)\text{d}x
+$$
+
+$$
+\Prob{X\in A}=\int_A f_X(x)\text{d}x
+$$
+
+example omitted
+
+Cumulative distribution function (CDF): $F_X$
+
+$F_X(x)=\mu( (\infty,x] )$
+
+Continuous case:
+
+$$
+F_X(x)=\int_{-\infty}^{x}f_X(\xi)\text{d}\xi
+$$
+
+Discrete Case:
+
+$$
+F_X(x)=\sum_{a_i\leq X}P_X{a_i}
+$$
+
+\bigskip
+
+\subsection{Equality}
+
+$$
+\bar{X}:\Omega_\Lambda=\{H,T\}\mapsto \mathbb{R}
+$$
+$$
+\bar{X}(H)=1, \bar{X}{T}=-1
+$$
+
+$$
+\tilde{X}:\Omega_\Lambda=\{1,2,3,4,5,6\}\mapsto \mathbb{R}
+$$
+$$
+\tilde{X}(1)=\tilde{X}{2}=\tilde{X}{3}=1,
+\tilde{X}(4)=\tilde{X}{5}=\tilde{X}{6}=-1
+$$
+
+\begin{align*}
+\mu_{\bar{X}} (A \subseteq \mathbb{R})
+&=\Prob{ \bar{X}\in A }
+\\
+&=\Prob{ \{ \omega\in\Omega_\lambda \}:\bar{X}(\omega)=A}
+\end{align*}
+
+\begin{align*}
+\mu_{\tilde{X}} (A\subseteq\mathbb{R})
+&=\Prob{ \tilde{X}\in A }
+\\
+&=\Prob{\{\omega\in\Omega_\lambda\}:\tilde{X}(\omega)=A}
+\end{align*}
+
+$$
+\forall A \subset R, \mu_{\bar{X}}(A)=\mu_{\tilde{X}}(A)
+$$
+
+\bigskip
+
+Take any subset $A\subseteq \mathbb{R}$:
+
+$$
+\{ \omega\in\Omega_{\Lambda}:\bar{X}(\omega)\in A \}=
+\Bigg\{
+\begin{matrix}
+\emptyset \text{ if }-\Lambda\not\in A \text{ and }1 \neq A \implies\mu_{\bar{X}}(A)=0
+\\
+\text{H} \text{ if }-\Lambda\not\in A \text{ but } 1\in A \implies\mu_{\bar{X}}(A)=1/2
+\\
+\text{T} \text{H} \text{ if }-\Lambda\not\in A \text{ but }1 \in A \implies\mu_{\bar{X}}(A)=1/2
+\\
+\text{H,T} \text{ if }-\Lambda\in A \text{ and }1 \in A\rightarrow \mu_{\bar{X}}(A)=1
+\end{matrix}
+$$
+
+\section{Multiple random variables}
+
+$$
+X:\Omega \mapsto \mathbb{R}
+$$
+
+$$
+(X_i)_{i\in I}:\Omega \mapsto \mathbb{R}
+$$
+
+e.g.: $X=$ Height, $Y$=Weights
+
+\subsection{Some distributions}
+
+\begin{align*}
+(X,Y)&\mapsto \mathbb{R}^2
+\\
+\mu_{X,Y}(A^{u^{IR}})\times B^{u^{IR}})&=\Prob{X\in A, Y\in B}
+\\
+&=\Prob{\{ \omega\in\Omega: X(\omega)\in A \text{ and }Y(\omega\in B) \}}
+\end{align*}
+
+\subsection{Properties}
+
+Joint PMF: $P_{X,Y}(x,y)=\Prob{X=x,Y=y}$
+
+Joint PDF: $f_{X,Y}(x,y)=\Prob{X=x,Y=y}\text{d}x\text{d}y$
+
+\subsubsection{CDF}
+
+$$
+F_{X,Y}(x,y)=\sum_{\tilde{x}\leq X, \tilde{y}\leq y} P_{X,Y}(x,y)
+$$
+
+$$
+F_{X,Y}(x,y)=\int_{\tilde{x}\leq X, \tilde{y}\leq y} f_{X,Y}(x,y) \text{d}\tilde{d},\text{d}\tilde{y}
+$$
+
+\subsubsection{Marginal}
+
+$$
+F_{X,Y}(x,y)\rightarrow F_X(x)
+$$
+
+$$
+F_X{x}=\Prob{X\leq x}=\Prob(X\leq x Y\leq \infty)
+$$
+
+$$
+F_X{x}=F_{X,Y}(x,\infty)
+$$
+
+\subsubsection{Identities}
+
+$$
+P_X{x}=\sum_y P_{X,Y}(x,y)
+$$
+
+$$
+f_X(x)=\int_y f_{X,Y}(x,y)\text{d}y
+$$
+
+
+\subsubsection{Conditionals}
+
+\begin{align*}
+P_{X|Y}(x|y)&=\Prob{X\leq x|Y=y}
+\\&=\frac{\Prob{X=x,Y=y}}{\Prob{Y=y}}
+\\&=\frac{P_{X,Y}(x,y)}{P_Y(y)}\text{ Discrete case }
+\\&=\frac{f_{X,Y}(x,y)}{f_Y(y)}\text{ Continuous case }
+\end{align*}
+
+\subsubsection{Law of total probabilities}
+
+$$
+f_X(x)=\int_\mathbb{R} f_{X|Y}(x|y) f_Y(y)\text{d}y
+\text{ Discrete case }
+$$
+
+$$
+P_X(x)=\sum_y P_{X|Y}(x|y) P_Y(y)
+\text{ Continuous case }
+$$
+
+\subsubsection{Continuous Baye's Rule}
+
+$$
+f_{X,Y}(x,y)=\frac{f_{Y|X}(y|x)f_X(x)}{\int_\mathbb{R}f_{Y|X}(y|\bar{x})f_X(\bar{x})\text{d}\bar{x}}
+$$
+
+\section{Independence of random variable}
+
+\subsection{Definitions}
+
+Given random variable $X_1\dots X_N:\Omega\mapsto \mathbb{R}$, we say they are independent if and only if:
+
+$$
+\forall A_i\in \mathbb{R}:
+\Prob{ X_1\in A_1, X_2\in A_2\dots, X_N\in A_N }=\prod_{i=1}^{N}\Prob{X_i\in A_i}
+$$
+
+For countably many $(X_i)_{i\in I}$ we say they are independent $\perp$ if and only if every subfamily is independent:
+
+$$
+\Prob{X_1\leq x_1,\dots,X_N\leq x_N}=\prob_{i=1}^{N}\Prob{X_1\leq x_i}
+$$
+
+for every $(X_1,\dots,X_N)\in\mathbb{R}^N$
+
+\bigskip
+
+Discrete case, joint PMF:
+
+$$
+P_{X_1,\dots,X_N}=\prod_{i=1}^{N}P_{X_i}(x_i)
+$$
+
+for every $(X_1,\dots,X_N)\in\mathbb{R}^N$
+
+\bigskip
+
+Continuous case, joint PDF:
+
+$$
+f_{X_1,\dots,X_N}=\prod_{i=1}^{N}f_{X_i}(x_i)
+$$
+
+for every $(X_1,\dots,X_N)\in\mathbb{R}^N$
+
+The three equations above are equivalent.
+
+\bigskip
+
+Take $A_1,\dots,A_N\in\mathbb{R}$
+
+\begin{align*}
+\Prob{x_1\in A_1,\dots,X_N\in A_N}
+=&
+\int_{A_1}\dots\int_{A_N}f_{X_1,\dots,X_N}(x_1,\dots,x_N)\text{d}x_1\dots\text{d}x_N
+\\=&
+\int_{A_1}\dots\int_{A_N} f_{X_1}(x_1)\dots f_{X_N}(x_N)\text{d}x_1\dots\text{d}x_N
+\\=&
+\int_{A_1}f_{X_1}(x_1)\text{d}x_1\cdot\dots\cdot \int_{A_N}f_{X_N}(x_N)\text{d}x_N
+\\=&
+\prod_{i=1}^{N}\Prob{x_1\in A_i}
+\end{align*}
+
+\section{Expectation}
+
+$$
+\mathbb{E}[X]=
+\bigg\{
+\begin{matrix}
+\sum_x x\cdot\Prob{X=x}\text{ Discrete case }
+\\
+\int_\mathbb{R} xf_X{x}\text{d}x\text{ Continuous case }
+\end{matrix}
+$$
+
+examples omitted
+
+\subsection{Definitions}
+
+We say a random variable is integrable if and only if
+
+$$
+\mathbb{E}[|X|]<\infty
+$$
+
+$$
+\mathbb{E}[g(x)]=
+\bigg\{
+\begin{matrix}
+\sum_x g(x)\Prob{X=x}\text{ Discrete case }
+\\
+\int_{\mathbb{R}}g(x)f_X(x)\text{d}x\text{ Continuous case }
+\end{matrix}
+$$
+
+\subsection{Properties}
+
+$
+X=0 \text{ constantly } \implies \mathbb{E}[X]=0
+$
+
+$
+X,Y\text{ integrable and }X\leq Y\text{ constantly }\implies \mathbb{E}[X]\leq\mathbb{E}[Y]
+$
+
+$
+\mathbb{E}[aX+bY]=a\mathbb{E}[X]+b\mathbb{E}[Y]
+$
+
+$
+|\mathbb{E}[X]|\leq\mathbb{E}[|X|]
+$
+
+$
+X\perp Y\implies\mathbb{E}[XY]=\mathbb{E}[X]\mathbb{E}[Y] \textbf{ Exercise}
+$
+
+\bigskip
+
+\subsection{More Definitions}
+
+$\mathbb{E}[X^r]$ is called the $r$th moment
+
+$\mathbb{E}[|X|^r]$ is called the $r$th absolute moment
+
+$\mathbb{E}[(X-\mathbb{E}[X])^r]$ is called the $r$th centred moment. When $r=2$, this is variance $\var[X]$.
+
+$\mathbb{E}[|X-\mathbb{E}[X]|^r]$ is called the $r$th absolute centred moment
+
+$
+\var[X]=\mathbb{E}[(X-\mathbb{E}[X])^2]
+$
+
+$
+\sigma[X]=\sqrt{\var[X]}=\sqrt{\mathbb{E}[(X-\mathbb{E}[X])^2]}
+$
+
+
+Examples omitted
+
+\section{Covariance}
+
+\subsection{Definitions}
+
+Given two random variables $X,Y$ we define the covariance to be
+
+$$
+\cov(X,Y)=\mathbb{E}[ (X-\mathbb{E}[X])(Y-\mathbb{E}[Y]) ]
+$$
+
+$$
+\cov(X,X)=\var[X]
+$$
+
+$$
+\corr(X,Y)=\frac{\cov(X,Y)}{\sigma[X]\sigma[Y]}
+\implies
+-1\leq\corr(X,Y)\leq 1
+$$
+
+$$
+X\perp Y\implies \cov(X,Y)=0\textbf{ Exercise}
+$$
+
+\subsection{Properties}
+
+$$
+\cov(X,aY+bZ)=a\cov(X,Y)+b\cov(X,Z)
+$$
+
+$$
+\cov(X,Y)=\cov(Y,X)
+$$
+
+$$
+\var(\sum_{i=1}^N X_i)=\sum_{i=1}^N\var(X_i)+\sum_{i\neq j}(\cov(X_i,X_j))
+$$
+
+\section{Conditional Expectation}
+
+\subsection{Definitions}
+
+$$
+\mathbb{E}[X|B]=\sum_x x\Prob{X=x|B}
+$$
+
+Special case $B={Y=y}$
+
+$$
+\mathbb{E}[X|Y=y]=
+\bigg\{
+\begin{matrix}
+\sum_x x\Prob{X=x|Y=y}=\sum_x x P_{X|Y}(x|y)
+\\
+\int_x x\Prob{X=x|Y=y}\text{d}x=\int_x x f_{X|Y}(x|y)\text{d}x
+=\phi(Y)
+\end{matrix}
+$$
+
+$$
+\mathbb{E}[X|Y]=\phi(Y)
+$$
+
+$$
+\mathbb{E}[X|Y_1,\dots,Y_N]=\sum_x x\Prob{X=x|Y_1=y_1,\dots,Y_N=y-N}=\phi(y_1,\dots,y_N)
+$$
+
+$$
+\mathbb{E}[Y_1,\dots,Y_N]=\mathbb{E}[X|\mathcal{G}]=\phi(Y_1,\dots,Y_N)\text{ where }\mathcal{G}=Y_1,\dots,Y_N
+$$
+
+\subsection{Properties}
+
+$X=c$ constantly $c\in\mathbb{R}\implies \mathbb{E}[X|\mathcal{G}]=c$
+
+$X,Y$ integrable and $X\leq Y$ constantly $\implies\mathbb{E}[X|\mathcal{G}]\leq\mathbb{E}[Y|g]$ (monotonicity)
+
+$\mathbb{E}[aX+bY|\mathcal{G}]=a\mathbb{E}[X|\mathcal{G}]+b\mathbb{E}[Y|\mathcal{G}]$
+
+$|\mathbb{E}[X|\mathcal{G}]\leq\mathbb{E}[|x||g]$ constantly
+
+\subsubsection{Law of total expectation}
+$$
+\mathbb{E}[X]=
+\bigg\{
+\begin{matrix}
+\sum_y \mathbb{E}[X|y=y]\Prob{Y=y} \text{ Discrete case }
+\\
+\int_{\mathbb{R}}\mathbb{E}[X|y=y]f_Y(y)\text{d}y \text{ Continuous case }
+\end{matrix}
+$$
+
+\section{Convergence of random variables}
+
+$$
+X_n:\Omega\mapsto \mathbb{R},
+X:\Omega\mapsto \mathbb{R}
+$$
+
+\subsection{Almost Sure Convergence}
+
+$$
+\Prob{\{\omega\in\Omega:X_n(\omega)\rightarrow X(\omega)\}}=1
+\iff
+X_n \rightarrow^{\text{almost sure}}
+$$
+
+\subsection{$L^2$ Convergence}
+
+$$
+\mathbb{E}[|X-X_n|^2]\rightarrow 0
+\iff X_n\rightarrow^{L^2}X
+$$
+
+\subsection{Convergence in Probability}
+
+$$
+\forall \epsilon>0, \prob{|X_n-X|>\epsilon}\rightarrow0\iff X_n\rightarrow^{\text{prob}}X
+$$
+
+\subsection{Weak Convergence(in distribution)}
+
+$\forall f $ bounded continuous functions
+
+$$
+\mathbb{E}[f(X_n)]\rightarrow\mathbb{E}[f(X)]\iff X_n\rightarrow^{\text{w}}X
+$$
+
+all other three convergence $\implies$ weak convergence
+
+
+\end{document}
