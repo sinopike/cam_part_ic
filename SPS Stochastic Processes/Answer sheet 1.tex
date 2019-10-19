@@ -1,0 +1,351 @@
+\input{header}
+
+\title{Stochastic Processes\\{\small Answer Sheet 1, Due 24/10/2019}}
+\author{Yuchen Pei}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+
+
+\section*{1}
+
+Given
+
+$$
+(\Omega,\mathcal{A},\mu)\text{ is a measure space}
+$$
+
+Consider $\{N_i\}$ with $i\in\mathbb{N}$ such that $\mu(N_i)=0\forall i\in\mathbb{N}$
+
+$$
+\mu(\bigcup_{i=1}^{\infty}N_i)=\sum_{i=1}^{\infty}\mu(N_i)-\mu(\text{intersections})\leq\sum_{i=1}^{\infty}\mu(N_i)=0
+$$
+
+$$
+\mu(A)\geq 0\forall A\in\mathcal{A},\mu(\bigcup_{i=1}^{\infty}N_i)\leq 0\implies\mu(\bigcup_{i=1}^{\infty}N_i)=0\implies \bigcup_{i=1}^{\infty}N_i\text{ is a null set.}
+$$
+
+\bigskip
+\section*{2}
+
+Given
+
+$$
+\mathcal{S}=\{
+(a,b]:-\infty\leq a \leq b <\infty
+\}
+$$
+
+\subsection*{(a)}
+
+$(a,a]=\emptyset\implies\emptyset\in\mathcal{S}$
+
+$
+\forall(a,b],(c,d]\in\mathcal{S}\:(\text{WLOG, let }a<c):(a,b]\cap(c,d]=\left\{
+\begin{array}{ll}
+(c,b]\in\mathcal{S} &\text{ if }c<b<d
+\\
+(c,d]\in\mathcal{S} &\text{ if }c<d\leq b
+\\
+\emptyset\in\mathcal{S} &\text{ otherwise}
+\end{array}
+\right.
+$
+
+$
+\forall(a,b],(c,d]\in\mathcal{S}:(a,b]\setminus(c,d]=\left\{
+\begin{array}{ll}
+(d,b]\in\mathcal{S} &\text{ if }c<a<d<b
+\\
+(a,c]\in\mathcal{S} &\text{ if }a<c<b<d
+\\
+(a,c]\cup(d,b] \text{ with } (a,c],(d,b]\in\mathcal{S} &\text{ if }a\leq c<d\leq b
+\\
+(a,b]\in\mathcal{S} & \text{ otherwise }
+\end{array}
+\right.
+$
+
+Therefore $\mathcal{S}$ is a semi-ring.
+
+\subsection*{(b)}
+
+Given
+
+$$
+\mu((a,b])=b-a
+$$
+
+Consider arbitrary disjoint intervals $(a,b]$, $(c,d]$, WLOG , let $c\geq b$, such that $(a,b]\cup(c,d]\in\mathcal{S}$
+
+If $a=b$, then $\mu((a,b]\cup(c,d])=\mu((c,d])+0=\mu((a,b])+\mu((c,d])$.
+
+Similarly if $c=d$, then $\mu((a,b]\cup(c,d])=\mu((a,b])+0=\mu((a,b])+\mu((c,d])$.
+
+Otherwise we must have $b=c$, so that $(a,b]\cup(c,d]=(a,d]$
+
+$\implies
+\mu((a,b]\cup(c,d])=d-a=d-c+c-a=\mu((a,b])+\mu((c,d])$.
+
+\bigskip
+
+Consider disjoint $\{(a_i,b_i]\}_{1\leq i\leq n}$ such that $\bigcup_{i=1}^{n}(a_i,b_i]\in\mathcal{S}$.
+
+WLOG, let $b_i\leq a_{i+1}\forall i$ then we must also have $a_{i+1}=b_{i}\forall i \in \mathbb{N}$ so that $\bigcup_{i=1}^{n}(a_i,b_i]=(a_1,b_n]\in\mathcal{S}$
+
+Now suppose that
+
+$$
+\mu\left(
+\bigcup_{i=1}^{n}
+(a_i,b_i]
+\right)
+=
+\sum_{i=1}^n
+\mu((a_i,b_i])
+$$
+
+ 
+
+
+Then by what we proved before:
+
+$$
+\mu\left(
+\bigcup_{i=1}^{n}
+(a_i,b_i]
+\cup
+(a_i+1,b_i+1]
+\right)
+=
+\sum_{i=1}^{n}
+\mu((a_i,b_i])+\mu((a_i+1,b_i+1])
+$$
+
+$$
+\implies
+\mu\left(
+\bigcup_{i=1}^{n+1}
+(a_i,b_i]
+\right)
+=
+\sum_{i=1}^{n+1}
+\mu((a_i,b_i])
+$$
+
+Where $a_{n+1}=b_n$ so that $\bigcup_{i=1}^{n+1}(a_i,b_i]=(a_1,b_n]\in\mathcal{S}$ 
+
+Therefore by induction, $\mu$ is finitely additive.
+
+\subsection*{(c)}
+
+Consider disjoint $\{(a_i,b_i]\}_{1\leq i\leq n}$ such that $\bigcup_{i=1}^{\infty}(a_i,b_i]\in\mathcal{S}$.
+
+WLOG, let $b_i\leq a_{i+1}\forall i$ then we must also have $a_{i+1}=b_{i}\forall i$ so that $\bigcup_{i=1}^{n}(a_i,b_i]=(a_1,b_\infty]\in\mathcal{S}$. Here $b_\infty$ is the limit of $\{b_i\}$ since we require it to be finite and $\{b_i\}$ to be increasing then $\{b_i\}$ must converge.
+
+$$
+\mu\left(
+\bigcup_{i=1}^{\infty}
+(a_i,b_i]
+\right)
+=
+b_\infty-a_1
+=
+a_\infty-a_1
+\text{ since } a_{i+1}=b_{i}\forall i
+$$
+
+$$
+\sum_{i=1}^{\infty} \mu((a_i,a_{i+1}])=
+\sum_{i=1}^{\infty} a_{i+1}-a_i=
+\lim_{n\rightarrow\infty}(\sum_{i=2}^{n+1} a_{i} -\sum_{i=1}^{n}a_i)=
+\lim_{i\rightarrow\infty} a_{i+1}-a_1=
+a_\infty-a_1
+$$
+
+$$
+\implies
+\mu\left(
+\bigcup_{i=1}^{\infty}
+(a_i,b_i]
+\right)
+=\sum_{i=1}^{\infty} \mu((a_i,a_{i+1}])
+$$
+
+Therefore $\mu$ is countably additive.
+
+Since we also have $\mu(\emptyset)=0$, $\mu$ is a pre-measure.
+
+
+\bigskip
+\section*{3}
+
+\subsection*{(a)}
+
+Suppose that $\mathcal{G}$ is a $\sigma$-field, then
+
+$\Omega\in\mathcal{G}$
+
+$\bigcap_{i=1}^n g_i=(\bigcup_{i=1}^n(g_i^c))^c\in\mathcal{G}\:\:\:\forall n\in\mathbb{N}, \{g_i\}\in\mathcal{G}$
+
+$A\setminus B=A\cap B^c\in\mathcal{G}\:\:\: \forall A,B\in\mathcal{G}:A\supseteq B $
+
+$\bigcup_{i=1}^{\infty}A_i\in\mathcal{G}\:\:\:\forall A_n\in\mathcal{G}:A_i\subseteq A_{i+1}\forall i$
+
+Then $\mathcal{G}$ is both a d-system and a $\pi$-system.
+
+\bigskip
+
+Suppose $\mathcal{G}$ is both a d-system and a $\pi$-system, then
+
+$\Omega\in\mathcal{G},\emptyset=A\setminus A\in\mathcal{G}\text{ for some } A\in\mathcal{G}$
+
+$A^c=\Omega\setminus A\in\mathcal{G}\forall A \in\mathcal{G}$
+
+$\bigcup_{i=1}^{\infty} A_i=\bigcup_{i=1}^{\infty}\bigcup_{j=1}^{i} A_j=\bigcup_{i=1}^{\infty}B_i\in\mathcal{G}\:\:\:\forall \{A_i\}\in\mathcal{G} $ since $B_i\subseteq B_{i+1}\forall i$
+
+Then $\mathcal{G}$ is a $\sigma$-field.
+
+\subsection*{(b)}
+
+Given
+
+$$
+\mathcal{G}\text{ is a }\pi-\text{system.}
+$$
+
+Suppose $\mathcal{S}_1$, $\mathcal{S}_2$ are sigma field on set $\Omega$.
+
+$$\text{Then }\begin{array}{lr}
+\left\{
+\begin{array}{l}
+\emptyset,\Omega\in\mathcal{S}_j
+\\
+ A^c\in\mathcal{S}\forall A\in\mathcal{S}_j
+\\
+\bigcup_{i=1}^{\infty} A_i\in\mathcal{S}_j\forall \{A_i\}\in\mathcal{S}_j
+\end{array}\right.
+&\forall j\in\{1,2\}
+\end{array}
+$$
+
+$$
+\implies \left\{
+\begin{array}{l}
+\emptyset,\Omega\in\mathcal{S}
+\\
+ A^c\in\mathcal{S}\forall A\in\mathcal{S}
+\\
+\bigcup_{i=1}^{\infty} A_i\in\mathcal{S}\forall \{A_i\}\in\mathcal{S}_j
+\end{array}\right.
+\text{ where }\mathcal{S}=\mathcal{S}_1\cap\mathcal{S}_2
+$$ 
+
+$$
+\implies
+\mathcal{S}_1\cap \mathcal{S}_2
+\text{ is a }\sigma\text{-field }\forall \sigma\text{-fields }\mathcal{S}_1,\mathcal{S}_2
+$$
+
+$d(\mathcal{G})$ is both a d-system and a $\pi$-system $\implies$ $d(\mathcal{G})$ is a $\sigma$-field.
+
+Then $\sigma(\mathcal{G})\cap d(\mathcal{G})$ is also a $\sigma$-field, and hence a d-system as well.
+
+$\sigma(\mathcal{G})\cap d(\mathcal{G})\subseteq\sigma(\mathcal{G}), \sigma(\mathcal{G})\cap d(\mathcal{G})\supseteq\sigma(\mathcal{G}) \implies \sigma(\mathcal{G})\cap d(\mathcal{G})=\sigma(\mathcal{G})$ since $\sigma(\mathcal{G})$ is the smallest $\sigma$-field containing $\mathcal{G}$.
+
+$$
+\implies 
+\sigma(\mathcal{G})= d(\mathcal{G})
+$$
+
+\bigskip
+\section*{4}
+
+For $\{a_n\}_{n=1}^{\infty}$:
+
+$$
+\limsup_{n\rightarrow\infty} a_n=
+\inf_{n\geq 1} \sup_{k\geq n}a_k\in[-\infty,\infty]
+$$
+
+$$
+\liminf_{n\rightarrow\infty}a_n=
+\sup_{n\geq 1}\inf_{k\geq n}a_k\in[-\infty,\infty]
+$$
+
+
+\subsection*{(a)}
+
+Given $\{a_n\}_{n=1}^{\infty}$, with $a_i\in\mathcal{P}(\Omega)\forall i$, define
+
+$$
+\limsup A_n = \bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty} A_k
+,\:\:
+\liminf A_n = \bigcup_{n=1}^{\infty}\bigcap_{k=n}^{\infty} A_k
+$$
+
+\begin{align*}
+x\in\bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty} A_k
+\iff & \forall n \exists k\geq n:
+x\in A_k 
+\\
+\iff & x \text{ belongs to infinitely many }A_k
+\end{align*}
+
+Therefore $\limsup A_n=\{
+x\in\Omega: x\text{ belongs to infinitely many }A_k
+\}$
+
+\begin{align*}
+x\in\bigcup_{n=1}^{\infty}\bigcap_{k=n}^{\infty} A_k
+\iff &
+\exists n:\forall k\geq n: x\in A_k
+\\ \iff & x \text{ belongs to all but finitely many }A_n
+\end{align*}
+
+Therefore $\liminf A_n=\{
+x\in\Omega: x\text{ belongs to all but finitely many }A_k
+\}$
+
+\subsection*{(b)}
+
+\begin{align*}
+\mathbbm{1}_{\limsup A_n}(x)=1
+\iff & x\in\limsup A_n
+\\
+\iff & \forall n \exists k\geq n: x\in A_k 
+\end{align*}
+
+\begin{align*}
+\limsup \mathbbm{1}_{A_n}(x)=1
+\iff & \inf_{n\geq 1} \sup_{k\geq n} \mathbbm{1}_{A_k}(x)=1
+\\
+\iff & \forall n \exists k\geq n: x\in A_k 
+\\
+\iff & \limsup \mathbbm{1}_{A_n}(x)=1
+\end{align*}
+
+Therefore $\mathbbm{1}_{\limsup A_n}=\limsup \mathbbm{1}_{A_n}$, since the indicator function is either 1 or 0.
+
+\begin{align*}
+\mathbbm{1}_{\liminf A_n}(x)=1
+\iff & x\in\liminf A_n
+\\
+\iff & \exists n :\forall k\geq n: x\in A_k 
+\end{align*}
+
+\begin{align*}
+\liminf \mathbbm{1}_{A_n}(x)=1
+\iff & \sup_{n\geq 1} \inf_{k\geq n} \mathbbm{1}_{A_k}(x)=1
+\\
+\iff & \exists n :\forall k\geq n: x\in A_k 
+\\
+\iff & \liminf \mathbbm{1}_{A_n}(x)=1
+\end{align*}
+
+Therefore $\mathbbm{1}_{\liminf A_n}=\liminf \mathbbm{1}_{A_n}$, since the indicator function is either 1 or 0.
+
+\end{document}
